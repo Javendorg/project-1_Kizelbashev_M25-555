@@ -1,4 +1,3 @@
-from .utils import describe_current_room
 from .constants import ROOMS
 
 def show_inventory(game_state):
@@ -22,6 +21,8 @@ def move_player(game_state, direction):
     """
         Функция перемещения.
     """
+    from .utils import describe_current_room
+
     current_room = ROOMS[game_state['current_room']]
     exits = current_room.get('exits', {})
     
@@ -37,14 +38,14 @@ def move_player(game_state, direction):
 
 def take_item(game_state, item_name):
     """
-        Функция взятия предмета
+    Функция взятия предмета
     """
-    urrent_room = ROOMS[game_state['current_room']]
+    current_room = ROOMS[game_state['current_room']]
     items = current_room.get('items', [])
     
     if item_name in items:
-        game_state.setdefault('player_inventory', []).append(item_name) # Добавляем предмет в инвентарь
-        items.remove(item_name) # Убираем предмет из комнаты
+        game_state.setdefault('player_inventory', []).append(item_name)
+        items.remove(item_name)
         print(f"Вы подняли: {item_name}")
     else:
         print("Такого предмета здесь нет.")
