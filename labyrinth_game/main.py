@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from . import constants
-from . import player_actions
+from .player_actions import show_inventory, get_input, move_player, take_item, use_item
 from .utils import describe_current_room
+
 def main():
     game_state = {
         'player_inventory': [], # Инвентарь игрока
